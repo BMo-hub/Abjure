@@ -69,6 +69,8 @@ public class Director : MonoBehaviour
         point.z = 0;
         //Debug.Log("Click detected at world point: " + worldPoint);
         Debug.Log("Click detected on cell: " + tilemap.WorldToCell(point));
+        //tm.addTower(tilemap.WorldToCell(point));
+
     }
 
     private void handleTurn()
@@ -118,4 +120,8 @@ public class Director : MonoBehaviour
         }
     }
 
+    public bool addTower(Vector3 screenPosition)
+    {
+        return tm.addTower(tilemap.WorldToCell(Camera.main.ScreenToWorldPoint(screenPosition)));
+    }
 }

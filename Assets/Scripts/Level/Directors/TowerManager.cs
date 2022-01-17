@@ -5,10 +5,10 @@ using UnityEngine;
 public class TowerManager : MonoBehaviour
 {
     public Grid grid;
-    public GameObject blueprint;
+    public SimpleTower blueprint;
     public GameObject em;
 
-    public List<GameObject> activeTowers;
+    public List<SimpleTower> activeTowers;
 
     private List<GameObject> targets;
     // Start is called before the first frame update
@@ -16,16 +16,16 @@ public class TowerManager : MonoBehaviour
 
     void Start()
     {
-        activeTowers = new List<GameObject>();
+        activeTowers = new List<SimpleTower>();
         targets = new List<GameObject>();
         l = gameObject.AddComponent<LineRenderer>();
 
         //sample tower
-        Vector3Int newPosition = new Vector3Int(-4, 2, 0);
-        GameObject newTower = Instantiate(blueprint, grid.GetCellCenterWorld(new Vector3Int(100, 100, 0)), Quaternion.identity);
-        newTower.GetComponent<SimpleTower>().PlaceTurret(newPosition);
-        newTower.transform.position = grid.CellToWorld(newPosition);
-        activeTowers.Add(newTower);
+        //Vector3Int newPosition = new Vector3Int(-4, 2, 0);
+        //SimpleTower newTower = Instantiate(blueprint, grid.GetCellCenterWorld(new Vector3Int(100, 100, 0)), Quaternion.identity);
+        //newTower.GetComponent<SimpleTower>().PlaceTurret(newPosition);
+        //newTower.transform.position = grid.CellToWorld(newPosition);
+        //activeTowers.Add(newTower);
     }
 
     // Update is called once per frame
@@ -34,14 +34,9 @@ public class TowerManager : MonoBehaviour
         
     }
 
-    public void addTower(Vector3Int gridLoc)
-    {
-
-    }
-
     public void nextTurn()
     {
-        foreach (GameObject tower in activeTowers)
+        foreach (SimpleTower tower in activeTowers)
         {
             findTargets(tower);
             if (targets.Count > 0)
@@ -64,7 +59,7 @@ public class TowerManager : MonoBehaviour
         }
     }
 
-    public bool findTargets(GameObject tower)
+    public bool findTargets(SimpleTower tower)
     {
         targets.Clear();
         bool found = false;
@@ -87,5 +82,38 @@ public class TowerManager : MonoBehaviour
             }
         }
         return found;
+    }
+
+    public bool addTower(Vector3Int gridLocation)
+    {
+        gridLocation.z = 0;
+        if (!checkTowerValid(gridLocation))
+        {
+            return false;
+        }
+
+        Debug.Log("Placing tower at grid location: " + gridLocation);
+        SimpleTower newTower = Instantiate(blueprint);
+        newTower.GetComponent<SimpleTower>().PlaceTurret(gridLocation);
+        newTower.transform.position = grid.CellToWorld(gridLocation);
+        activeTowers.Add(newTower);
+
+        return true;
+    }
+
+    public bool checkTowerValid(Vector3Int gridLocation)
+    {
+        if (activeTowers.Count == 0 )
+        {
+            return true;
+        }
+        foreach (SimpleTower t in activeTowers)
+        {
+            if(gridLocation == t.gridLoc)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

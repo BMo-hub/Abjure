@@ -6,7 +6,7 @@ using UnityEngine;
 public class cameraController : MonoBehaviour
 {
     [SerializeField]
-    float zoomFactor;
+    public float zoomFactor;
 
     [SerializeField]
     float zoomSpeed;
