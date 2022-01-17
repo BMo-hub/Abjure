@@ -58,15 +58,15 @@
     <Compile Include="Assets\Scripts\Level\Directors\BaseManager.cs" />
     <Compile Include="Assets\Scripts\Enemies\Tank.cs" />
     <Compile Include="Assets\Scripts\Towers\SimpleTower.cs" />
+    <Compile Include="Assets\Scripts\Level\Directors\Hand.cs" />
     <Compile Include="Assets\Scripts\Level\Directors\EnemyManager.cs" />
-    <Compile Include="Assets\ScreenDisplay.cs" />
+    <Compile Include="Assets\Scripts\Level\ScreenDisplay.cs" />
     <Compile Include="Assets\Scripts\Level\HealthDisplay.cs" />
     <Compile Include="Assets\Scripts\Level\Directors\TowerManager.cs" />
-    <Compile Include="Assets\Card.cs" />
-    <Compile Include="Assets\Arrow.cs" />
+    <Compile Include="Assets\Scripts\Cards\Card.cs" />
+    <Compile Include="Assets\Scripts\Projectiles\Arrow.cs" />
     <Compile Include="Assets\Scripts\Level\GameOverDisplay.cs" />
     <Compile Include="Assets\Scripts\Level\cameraController.cs" />
-    <Compile Include="Assets\Hand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
