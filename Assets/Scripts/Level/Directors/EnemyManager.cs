@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class EnemyManager : MonoBehaviour
 {
-    public Tilemap tilemap;
     public GameObject bluePrint;
 
     private Vector3Int[] path;
@@ -39,7 +37,51 @@ public class EnemyManager : MonoBehaviour
         }
 
         //simple path
-        path = new Vector3Int[] { new Vector3Int(4, 1, 0), new Vector3Int(3, 1, 0), new Vector3Int(2, 1, 0), new Vector3Int(1, 1, 0), new Vector3Int(0, 1, 0), new Vector3Int(-1, 1, 0), new Vector3Int(-2, 1, 0), new Vector3Int(-3, 1, 0), new Vector3Int(-4, 1, 0), new Vector3Int(-5, 1, 0) };
+        path = new Vector3Int[] { new Vector3Int(14, 5, 0),
+                                    new Vector3Int(14, 4, 0),
+                                    new Vector3Int(13, 3, 0),
+                                    new Vector3Int(13, 2, 0),
+                                    new Vector3Int(12, 1, 0),
+                                    new Vector3Int(12, 0, 0),
+                                    new Vector3Int(11, 0, 0),
+                                    new Vector3Int(10, 0, 0),
+                                    new Vector3Int(9, 0, 0),
+                                    new Vector3Int(8, -1, 0),
+                                    new Vector3Int(7, -1, 0),
+                                    new Vector3Int(7, 0, 0),
+                                    new Vector3Int(6, 0, 0),
+                                    new Vector3Int(5, 1, 0),
+                                    new Vector3Int(6, 2, 0),
+                                    new Vector3Int(7, 2, 0),
+                                    new Vector3Int(8, 2, 0),
+                                    new Vector3Int(9, 2, 0),
+                                    new Vector3Int(10, 2, 0),
+                                    new Vector3Int(10, 3, 0),
+                                    new Vector3Int(11, 4, 0),
+                                    new Vector3Int(11, 5, 0),
+                                    new Vector3Int(11, 6, 0),
+                                    new Vector3Int(10, 6, 0),
+                                    new Vector3Int(9, 6, 0),
+                                    new Vector3Int(8, 6, 0),
+                                    new Vector3Int(7, 6, 0),
+                                    new Vector3Int(6, 6, 0),
+                                    new Vector3Int(5, 5, 0),
+                                    new Vector3Int(4, 5, 0),
+                                    new Vector3Int(4, 4, 0),
+                                    new Vector3Int(3, 4, 0),
+                                    new Vector3Int(2, 4, 0),
+                                    new Vector3Int(1, 3, 0),
+                                    new Vector3Int(2, 2, 0),
+                                    new Vector3Int(3, 2, 0),
+                                    new Vector3Int(3, 1, 0),
+                                    new Vector3Int(3, 0, 0),
+                                    new Vector3Int(2, 0, 0),
+                                    new Vector3Int(1, 0, 0),
+                                    new Vector3Int(0, 1, 0),
+                                    new Vector3Int(0, 2, 0),
+                                    new Vector3Int(-1, 3, 0),
+                                    new Vector3Int(-2, 3, 0)
+        };
 
     }
 
@@ -57,7 +99,7 @@ public class EnemyManager : MonoBehaviour
             {
                 turnsSinceLastSpawn = 0;
                 GameObject enemyToAdd = enemyMap[inactiveTanks.Dequeue()];
-                activeTanks.Add(Instantiate(enemyToAdd, tilemap.GetCellCenterWorld(path[0]), Quaternion.identity));
+                activeTanks.Add(Instantiate(enemyToAdd, FindObjectOfType<Grids>().GetCellCenterWorld(path[0]), Quaternion.identity));
                 enemyToAdd.GetComponent<Tank>().currentPosition = path[0];
             }
             else
@@ -93,7 +135,7 @@ public class EnemyManager : MonoBehaviour
                     if (currentPathCount < path.Length)
                     {
 
-                        activeTanks[i].gameObject.transform.position = tilemap.GetCellCenterWorld(path[currentPathCount]);
+                        activeTanks[i].gameObject.transform.position = FindObjectOfType<Grids>().GetCellCenterWorld(path[currentPathCount]);
                         activeTanks[i].gameObject.GetComponent<Tank>().currentPosition = path[currentPathCount];
                     }
                     else

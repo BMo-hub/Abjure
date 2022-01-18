@@ -37,7 +37,7 @@ public class Card : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler,
     public void OnDrag(PointerEventData eventData)
     {
         Debug.Log("Dragging");
-        GetComponentInParent<Hand>().showLine(transform.position);
+        //GetComponentInParent<Hand>().showLine(transform.position);
         //transform.position += (Vector3)eventData.delta;
     }
 
@@ -48,7 +48,7 @@ public class Card : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler,
         if(Vector3.Distance(startPosition, (Vector3)eventData.position) > dragPlayDistance)
         {
             //play card
-            if (FindObjectOfType<Director>().addTower((Vector3)eventData.position))
+            if (FindObjectOfType<Director>().addTowerWorld(Camera.main.ScreenToWorldPoint((Vector3)eventData.position)))
             {
                 Object.Destroy(gameObject);
             }

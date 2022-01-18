@@ -4,27 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using System.IO;
 
 public class Director : MonoBehaviour
 {
     public EnemyManager em;
     public TowerManager tm;
-    public Tilemap tilemap;
     public string gameState;
     public GameObject gameOverScreen;
     public GameObject firingScreen;
     public GameObject movingScreen;
+
+    public Grids g;
 
     public Button nextTurnButton;
 
     public float fireWait;
     public float moveWait;
 
+    public TextAsset pathOutput;
+
     private float timeCounter;
+
+    private List<Vector3> newPath;
 
     // Start is called before the first frame update
     void Start()
     {
+        newPath = new List<Vector3>();
         gameState = "RUNNING";
         timeCounter = Time.timeSinceLevelLoad;
     }
@@ -57,8 +64,15 @@ public class Director : MonoBehaviour
                 firingScreen.GetComponent<ScreenDisplay>().turnOff();
                 movingScreen.GetComponent<ScreenDisplay>().turnOn();
                 break;
-            default:
-                Debug.Log("ERROR: game state not found");
+            case "WRITING_PATH":
+                if (Input.GetMouseButtonDown(0))
+                {
+                    addToPath(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                }
+                if (Input.GetButtonDown("Jump"))
+                {
+                    writePath();
+                }
                 break;
         }
         handleTurn();
@@ -67,9 +81,8 @@ public class Director : MonoBehaviour
     private void onMouseClickEvent(Vector3 point)
     {
         point.z = 0;
-        //Debug.Log("Click detected at world point: " + worldPoint);
-        Debug.Log("Click detected on cell: " + tilemap.WorldToCell(point));
-        //tm.addTower(tilemap.WorldToCell(point));
+        Debug.Log("Click detected on cell: " + g.WorldToCell(point));
+        //addTower(point);
 
     }
 
@@ -119,9 +132,25 @@ public class Director : MonoBehaviour
             nextTurnButton.interactable = false;
         }
     }
-
-    public bool addTower(Vector3 screenPosition)
+    public bool addTowerWorld(Vector3 worldPosition)
     {
-        return tm.addTower(tilemap.WorldToCell(Camera.main.ScreenToWorldPoint(screenPosition)));
+        return tm.addTower(g.WorldToCell(worldPosition));
+    }
+
+    private void addToPath( Vector3 p )
+    {
+        newPath.Add(g.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
+    }
+
+    private void writePath()
+    {
+        string filePath = "Assets/Debug/path.txt";
+        //Write some text to the test.txt file
+        StreamWriter writer = new StreamWriter(filePath, false);
+        foreach(Vector3 v in newPath)
+        {
+            writer.WriteLine(v);
+        }
+        writer.Close();
     }
 }

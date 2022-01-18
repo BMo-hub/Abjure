@@ -4,34 +4,17 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-    public Grid grid;
     public SimpleTower blueprint;
     public GameObject em;
 
     public List<SimpleTower> activeTowers;
 
     private List<GameObject> targets;
-    // Start is called before the first frame update
-    private LineRenderer l;
 
     void Start()
     {
         activeTowers = new List<SimpleTower>();
         targets = new List<GameObject>();
-        l = gameObject.AddComponent<LineRenderer>();
-
-        //sample tower
-        //Vector3Int newPosition = new Vector3Int(-4, 2, 0);
-        //SimpleTower newTower = Instantiate(blueprint, grid.GetCellCenterWorld(new Vector3Int(100, 100, 0)), Quaternion.identity);
-        //newTower.GetComponent<SimpleTower>().PlaceTurret(newPosition);
-        //newTower.transform.position = grid.CellToWorld(newPosition);
-        //activeTowers.Add(newTower);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void nextTurn()
@@ -95,7 +78,7 @@ public class TowerManager : MonoBehaviour
         Debug.Log("Placing tower at grid location: " + gridLocation);
         SimpleTower newTower = Instantiate(blueprint);
         newTower.GetComponent<SimpleTower>().PlaceTurret(gridLocation);
-        newTower.transform.position = grid.CellToWorld(gridLocation);
+        newTower.transform.position = FindObjectOfType<Grids>().CellToWorld(gridLocation);
         activeTowers.Add(newTower);
 
         return true;
@@ -103,6 +86,10 @@ public class TowerManager : MonoBehaviour
 
     public bool checkTowerValid(Vector3Int gridLocation)
     {
+        if (!FindObjectOfType<Grids>().gridPointInBounds(gridLocation))
+        { 
+            return false;
+        }
         if (activeTowers.Count == 0 )
         {
             return true;

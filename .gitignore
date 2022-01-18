@@ -70,3 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+#Fantasy Hex Tiles content
+/Assets/Fantasy Hex Tiles/*
+/Assets/Fantasy Hex Tiles.meta

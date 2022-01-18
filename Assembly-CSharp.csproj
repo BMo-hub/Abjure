@@ -55,18 +55,41 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Level\Directors\Director.cs" />
     <Compile Include="Assets\Scripts\Level\MapOverlay.cs" />
+    <Compile Include="Assets\Grids.cs" />
     <Compile Include="Assets\Scripts\Level\Directors\BaseManager.cs" />
     <Compile Include="Assets\Scripts\Enemies\Tank.cs" />
     <Compile Include="Assets\Scripts\Towers\SimpleTower.cs" />
     <Compile Include="Assets\Scripts\Level\Directors\Hand.cs" />
     <Compile Include="Assets\Scripts\Level\Directors\EnemyManager.cs" />
+    <Compile Include="Assets\Fantasy Hex Tiles\Scripts\NavManager.cs" />
     <Compile Include="Assets\Scripts\Level\ScreenDisplay.cs" />
     <Compile Include="Assets\Scripts\Level\HealthDisplay.cs" />
+    <Compile Include="Assets\Fantasy Hex Tiles\Scripts\mover.cs" />
     <Compile Include="Assets\Scripts\Level\Directors\TowerManager.cs" />
     <Compile Include="Assets\Scripts\Cards\Card.cs" />
     <Compile Include="Assets\Scripts\Projectiles\Arrow.cs" />
     <Compile Include="Assets\Scripts\Level\GameOverDisplay.cs" />
     <Compile Include="Assets\Scripts\Level\cameraController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Debug\path.txt" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\Fantasy Hex Tiles\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
